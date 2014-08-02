@@ -5,8 +5,12 @@ Add the current value above the cursor. The value change dynamically with the cu
 ![ScreenShot](http://i.imgur.com/NymatH2.jpg)
 
 Example code:
-
+        
+        //initialize your seekbar with you max and min value
         StartPointSeekBar<Integer> seekBar = new StartPointSeekBar<Integer>(-100, +100, this);
+        //set the start cursor position (Value between 0 and 1)
+        seekBar.setNormalizedValue(0.5);
+        //do something on change listener event
         seekBar.setOnSeekBarChangeListener(new StartPointSeekBar.OnSeekBarChangeListener<Integer>()
         {
             @Override
