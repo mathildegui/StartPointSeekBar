@@ -35,6 +35,25 @@ public class StartPointSeekBar<T extends Number>  extends View
     private boolean mIsDragging;
     private final NumberType numberType;
 
+    public int getmViewHeight() {
+        return mViewHeight;
+    }
+
+    public void setmViewHeight(int mViewHeight) {
+        this.mViewHeight = mViewHeight;
+    }
+
+    public int getmViewWidht() {
+        return mViewWidht;
+    }
+
+    public void setmViewWidht(int mViewWidht) {
+        this.mViewWidht = mViewWidht;
+    }
+
+    private int mViewHeight;
+    private int mViewWidht;
+
 
     private boolean isThumbPressed;
     private double normalizedThumbValue = 0d;
@@ -56,7 +75,7 @@ public class StartPointSeekBar<T extends Number>  extends View
      */
     public interface OnSeekBarChangeListener<T> {
         public void onOnSeekBarValueChange(StartPointSeekBar<?> bar,
-                                                T value);
+                                           T value);
     }
 
     /**
@@ -118,15 +137,18 @@ public class StartPointSeekBar<T extends Number>  extends View
     @Override
     protected synchronized void onMeasure(int widthMeasureSpec,
                                           int heightMeasureSpec) {
-        int width = 200;
+        int width =200;
         if (MeasureSpec.UNSPECIFIED != MeasureSpec.getMode(widthMeasureSpec)) {
             width = MeasureSpec.getSize(widthMeasureSpec);
         }
-        int height = thumbImage.getHeight();
+
+        int height = thumbImage.getHeight()+100;
         if (MeasureSpec.UNSPECIFIED != MeasureSpec.getMode(heightMeasureSpec)) {
             height = Math.min(height, MeasureSpec.getSize(heightMeasureSpec));
         }
-        setMeasuredDimension(width, height);
+        setmViewHeight(height);
+        setmViewWidht(width);
+        setMeasuredDimension(mViewWidht, height);
     }
 
     @Override
@@ -276,12 +298,12 @@ public class StartPointSeekBar<T extends Number>  extends View
     }
 
     /**
-            * Converts a normalized value to a Number object in the value space between
-    * absolute minimum and maximum.
-        *
-        * @param normalized
-    * @return
-            */
+     * Converts a normalized value to a Number object in the value space between
+     * absolute minimum and maximum.
+     *
+     * @param normalized
+     * @return
+     */
     @SuppressWarnings("unchecked")
     private T normalizedToValue(double normalized) {
         return (T) numberType.toNumber(absoluteMinValuePrim + normalized
@@ -404,10 +426,20 @@ public class StartPointSeekBar<T extends Number>  extends View
             rect.right = normalizedToScreen(valueToNormalized(0.0d));
             rect.left = normalizedToScreen(normalizedThumbValue);
         }
+        //set value to textview
+
 
         paint.setColor(SINGLE_COLOR);
         canvas.drawRect(rect, paint);
+        paint.setTextSize(20);
 
+        int currentValue = numberType.toNumber(absoluteMinValuePrim + normalizedThumbValue
+                * (absoluteMaxValuePrim - absoluteMinValuePrim)).intValue();
+        //set value from seekbar
+        canvas.drawText(normalizedToValue(normalizedThumbValue).toString(),
+                (float)(((currentValue+absoluteMaxValuePrim)*(getWidth()-padding-padding))/(float)(absoluteMaxValuePrim*2))+paint.getTextSize(),
+                getmViewHeight()/5,
+                paint);
         drawThumb(normalizedToScreen(normalizedThumbValue),
                 isThumbPressed, canvas);
         Log.d(VIEW_LOG_TAG, "thumb: " + normalizedToValue(normalizedThumbValue));
