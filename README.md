@@ -3,7 +3,7 @@ Forked/Inspired from https://code.google.com/p/range-seek-bar/ by tittel@kom.e-t
 
 This solves the problem as described in http://stackoverflow.com/questions/17415096/seekbar-for-two-values-50-0-50
 
-![ScreenShot](http://imgur.com/N4TOD31.png)
+![ScreenShot](http://i.imgur.com/NymatH2.jpg)
 
 
 
