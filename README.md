@@ -1,13 +1,8 @@
-Forked/Inspired from https://code.google.com/p/range-seek-bar/ by tittel@kom.e-technik.tu-darmstadt.de
+Forked/Inspired from https://github.com/vashisthg/StartPointSeekBar
 
-
-This solves the problem as described in http://stackoverflow.com/questions/17415096/seekbar-for-two-values-50-0-50
+Add the current value above the cursor. The value change dynamically with the cursor.
 
 ![ScreenShot](http://i.imgur.com/NymatH2.jpg)
-
-
-
-So you can set the start position of the seekbar anywhere.
 
 Example code:
 
