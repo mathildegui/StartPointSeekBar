@@ -1,6 +1,10 @@
 Forked/Inspired from https://github.com/vashisthg/StartPointSeekBar
 
-Add the current value above the cursor. The value change dynamically with the cursor.
+SeekBAr with positive and negative values
+Set the default first position when you want in the seebar
+get the current value dynamically
+
+Add: current value above the cursor. The value change dynamically with the cursor.
 
 ![ScreenShot](http://i.imgur.com/NymatH2.jpg)
 
